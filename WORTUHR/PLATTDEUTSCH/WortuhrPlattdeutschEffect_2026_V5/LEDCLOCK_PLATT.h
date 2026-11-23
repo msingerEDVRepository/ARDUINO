@@ -516,28 +516,29 @@ void waitForTimeSuccess(){
 
 // ++++++ END +++++ LED Wait  +++++++++++++++++++++++++++++++
 
-// ++++++++++ Every second the logo should blink ++++++++++++
-void blinkingLogo(int LEDScaleValue){
+// AUFGABE 2: Sekundenblinken komplett auskommentiert (wird nicht mehr aufgerufen)
+// // ++++++++++ Every second the logo should blink ++++++++++++
+// void blinkingLogo(int LEDScaleValue){
 
-  RGB_RED = savedRGBRED;
-  RGB_GREEN = savedRGBGREEN;
-  RGB_BLUE = savedRGBBLUE;
+  // RGB_RED = savedRGBRED;
+  // RGB_GREEN = savedRGBGREEN;
+  // RGB_BLUE = savedRGBBLUE;
   
-  // Check if Night-Switch-Off is active...
-  nightSwitchOffCheck();
+  // // Check if Night-Switch-Off is active...
+  // nightSwitchOffCheck();
 
-  // FIX: nur dunkel lassen, wenn die Nachtabschaltung auch AKTIVIERT ist.
-  // nightSwitchOffCheck() liefert zwischen 3 und ca. 6 Uhr immer "true" - vorher
-  // blinkte das Logo dann auch bei ausgeschalteter Nachtabschaltung nicht.
-  if (!(savedNIGHTJN && nightSwitchOff)) {
-    LEDstripArray[60].setRGB( RGB_RED, RGB_GREEN, RGB_BLUE);
-    LEDstripArray[60].nscale8(LEDScaleValue);
-    FastLED.show();
-  }
+  // // FIX: nur dunkel lassen, wenn die Nachtabschaltung auch AKTIVIERT ist.
+  // // nightSwitchOffCheck() liefert zwischen 3 und ca. 6 Uhr immer "true" - vorher
+  // // blinkte das Logo dann auch bei ausgeschalteter Nachtabschaltung nicht.
+  // if (!(savedNIGHTJN && nightSwitchOff)) {
+    // LEDstripArray[60].setRGB( RGB_RED, RGB_GREEN, RGB_BLUE);
+    // LEDstripArray[60].nscale8(LEDScaleValue);
+    // FastLED.show();
+  // }
 
-}
+// }
 
-// ++++++ END +++++ LED LOGO Blink  +++++++++++++++++++++++++++++++
+// // ++++++ END +++++ LED LOGO Blink  +++++++++++++++++++++++++++++++
 
 
 // ++++++++++ MATRIX-RAIN REVEAL Effekt - START +++++++++++++++

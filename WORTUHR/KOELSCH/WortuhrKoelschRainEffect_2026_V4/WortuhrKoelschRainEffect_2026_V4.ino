@@ -28,6 +28,7 @@
 //   (> 29 Zeichen) haben vorher die Farb- und Nacht-Einstellungen überschrieben.
 //   Ein in V4 gespeichertes Passwort wird beim ersten Start automatisch übernommen.
 // - weitere Korrekturen: siehe Kommentare mit "FIX"
+// - Sekundenblinken des Logos (LED 60) komplett auskommentiert (Aufgabe 2)
 //
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -57,17 +58,18 @@ const char* passwordAP = "mingwortuhr";         // Only simple  password require
 unsigned long autoConnectStartTime = 120000;     // Start intervall = 2 Minuten
 
 unsigned long GET_TIME_interval = 10000;         //  every 10. sec // Network time protocol     --> 6 times a minute
-unsigned long BLINK_interval = 1000;             // every second the LOGO should Blink
+// AUFGABE 2: Variablen für das (auskommentierte) Sekundenblinken
+// unsigned long BLINK_interval = 1000;             // every second the LOGO should Blink
 
 unsigned long previousTIMEcall  = 0;          // we use the "millis()" command for time reference and this will output an unsigned long
-unsigned long previousSECOND  = 0;            // we use the "millis()" command for time reference and this will output an unsigned long
+// unsigned long previousSECOND  = 0;            // we use the "millis()" command for time reference and this will output an unsigned long
 
 bool receivedClockStart = false;
 bool countdownDone = false;
 
 String jsArray = "";
 
-bool LEDBlinkingToggle = true;
+// bool LEDBlinkingToggle = true;
 
 // +++++++++++++++++++ WEB-Server objects +++++++++++++++
 WebServer server(80);
@@ -777,27 +779,29 @@ void loop() {
 
     }
 
-    // Die LED (60) == Holbastelei-LOGO soll im Sekundentakt blinken.
-    // (früher an "savedSECONDS_JN" gekoppelt - diese Checkbox steuert jetzt
-    // die Ein-/Ausblend-Effekte, daher blinkt das Logo nun immer)
-    if ((millis() - previousSECOND) > BLINK_interval) {
+    // AUFGABE 2: Sekundenblinken des Logos (LED 60) komplett auskommentiert.
+    // Wieder aktivieren: die folgenden Zeilen einkommentieren (und blinkingLogo() im Header).
+    // // Die LED (60) == Holbastelei-LOGO soll im Sekundentakt blinken.
+    // // (früher an "savedSECONDS_JN" gekoppelt - diese Checkbox steuert jetzt
+    // // die Ein-/Ausblend-Effekte, daher blinkt das Logo nun immer)
+    // if ((millis() - previousSECOND) > BLINK_interval) {
 
-      if (LEDBlinkingToggle) {
+      // if (LEDBlinkingToggle) {
 
-        // der NSCALE - Value = 64 entspricht einer ca. 25%igen Brightness.
-        blinkingLogo(64);
-        LEDBlinkingToggle = false;
+        // // der NSCALE - Value = 64 entspricht einer ca. 25%igen Brightness.
+        // blinkingLogo(64);
+        // LEDBlinkingToggle = false;
 
-      } else {
+      // } else {
 
-        blinkingLogo(0);
-        LEDBlinkingToggle = true;
+        // blinkingLogo(0);
+        // LEDBlinkingToggle = true;
 
-      }
+      // }
 
-      previousSECOND = millis();
+      // previousSECOND = millis();
 
-    }
+    // }
 
   }
 
