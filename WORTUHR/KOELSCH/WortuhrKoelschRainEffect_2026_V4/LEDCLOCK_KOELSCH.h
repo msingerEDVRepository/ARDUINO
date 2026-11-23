@@ -198,7 +198,9 @@ const char* time_zone = "CET-1CEST,M3.5.0,M10.5.0/3";  // TimeZone rule for Euro
 void readLocalTime() {
   struct tm timeinfo;
 
-  if(!getLocalTime(&timeinfo)){
+  // Timeout 200 ms statt Standard 5000 ms: solange noch keine NTP-Zeit da ist,
+  // blockierte getLocalTime() sonst bei jedem Aufruf 5 Sekunden lang die Loop.
+  if(!getLocalTime(&timeinfo, 200)){
     Serial.println("No time available (yet)");
     return;
   } else {
@@ -391,8 +393,8 @@ void runCountdownPlatt() {
 
   // Bei aktivierten Ein-/Ausblend-Effekten (savedEFFECTSJN == true) dauert ein
   // einzelner Countdown-Schritt durch die Animationen spürbar länger - daher dort
-  // in größeren Schritten (4 statt 1) zählen, damit nur 3 statt 12 Durchläufe
-  // stattfinden (11 -> 7 -> 3).
+  // in 3er-Schritten zählen, damit nur 4 statt 12 Durchläufe stattfinden
+  // (11 -> 8 -> 5 -> 2).
   int countdownStep = savedEFFECTSJN ? 3 : 1;
 
   for (int countdownCounter = 11; countdownCounter >= 0; countdownCounter -= countdownStep) {
@@ -581,7 +583,10 @@ void blinkingLogo(int LEDScaleValue){
   // Check if Night-Switch-Off is active...
   nightSwitchOffCheck();
 
-  if (!nightSwitchOff) {
+  // FIX: nur dunkel lassen, wenn die Nachtabschaltung auch AKTIVIERT ist.
+  // nightSwitchOffCheck() liefert zwischen 3 und ca. 6 Uhr immer "true" - vorher
+  // blinkte das Logo dann auch bei ausgeschalteter Nachtabschaltung nicht.
+  if (!(savedNIGHTJN && nightSwitchOff)) {
     LEDstripArray[60].setRGB( RGB_RED, RGB_GREEN, RGB_BLUE);
     LEDstripArray[60].nscale8(LEDScaleValue);
     FastLED.show();
@@ -1317,6 +1322,17 @@ void runClockPlatt(){
     }
 
     FastLED.show();
+
+    // Absicherung (gleiche Logik wie in der Plattdeutsch-Variante): Während der
+    // Nachtabschaltung "nichts angezeigt" merken, damit nach dem Ende der Nacht
+    // garantiert neu gezeichnet wird. Vorher wurde auch nachts newletter ->
+    // shownletter kopiert - war das erste Wort nach der Nacht identisch mit dem
+    // letzten davor, blieb die Uhr dunkel. (Bei Kölsch verhindert das "GENAU" zur
+    // vollen Stunde das bisher zufällig, bei Plattdeutsch trat der Fehler auf.)
+    for(LEDindicator = ersteLED; LEDindicator <= letzteLED; LEDindicator++) {
+      shownletter[LEDindicator] = 0;
+    }
+    return;
 
   } // Ende Abfrage NIGHTMODE
 

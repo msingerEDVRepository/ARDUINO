@@ -257,6 +257,7 @@ const char* htmlPage = R"rawliteral(
             type="text"
             name="password"
             id="password"
+            maxlength="64"
             placeholder=" enter password"
           />
         </div>
@@ -366,20 +367,23 @@ const char* htmlPage = R"rawliteral(
       document.getElementById('rgbblueInput').value = blue;
     }
 
+    // Farbvorschau gleich beim Laden der Seite anzeigen (nicht erst beim ersten Schieben)
+    updateColorPreview();
+
     // ++++++++++ SAVE all settings +++++++++
 
 
     function saveSettings()  {
 
       var saveObjectJSON = {
-        rgb_red: document.getElementById('rgbredInput').value,
-        rgb_green: document.getElementById('rgbgreenInput').value,
-        rgb_blue: document.getElementById('rgbblueInput').value,
+        rgb_red: Number(document.getElementById('rgbredInput').value),
+        rgb_green: Number(document.getElementById('rgbgreenInput').value),
+        rgb_blue: Number(document.getElementById('rgbblueInput').value),
         ssid: document.getElementById('ssid').value,
         password: document.getElementById('password').value,
         nightJN: document.getElementById('nightModeJN').checked,
-        nightStart: document.getElementById('nightModeStart').value,
-        nightEnd: document.getElementById('nightModeEnd').value,
+        nightStart: Number(document.getElementById('nightModeStart').value),
+        nightEnd: Number(document.getElementById('nightModeEnd').value),
         effectsJN: document.getElementById('effectsJN').checked,
         clockStart: false,
       };
@@ -403,14 +407,14 @@ const char* htmlPage = R"rawliteral(
     function startClock() {
 
       var startObjectJSON = {
-        rgb_red: document.getElementById('rgbredInput').value,
-        rgb_green: document.getElementById('rgbgreenInput').value,
-        rgb_blue: document.getElementById('rgbblueInput').value,
+        rgb_red: Number(document.getElementById('rgbredInput').value),
+        rgb_green: Number(document.getElementById('rgbgreenInput').value),
+        rgb_blue: Number(document.getElementById('rgbblueInput').value),
         ssid: document.getElementById('ssid').value,
         password: document.getElementById('password').value,
         nightJN: document.getElementById('nightModeJN').checked,
-        nightStart: document.getElementById('nightModeStart').value,
-        nightEnd: document.getElementById('nightModeEnd').value,
+        nightStart: Number(document.getElementById('nightModeStart').value),
+        nightEnd: Number(document.getElementById('nightModeEnd').value),
         effectsJN: document.getElementById('effectsJN').checked,  
         clockStart: true,
       };
