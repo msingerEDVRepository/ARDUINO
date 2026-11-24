@@ -12,3 +12,6 @@ c) Übertrage die Effekte aus der Kölsch Variante in die Plattdeutsch Variante.
 +++++++++
 AUFGABE 2:
 a) Bitte kommentiere das Sekundenblinken komplett aus. Das sowohl in der KÖLSCH als auch in der PLATTDEUTSCH Variante. Ich möchte nur noch die Ein- und Ausblendeeffekte an- bzw. abschaltbar haben.
+
++++++++++
+Aufgabe 3:
