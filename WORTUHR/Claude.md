@@ -15,3 +15,7 @@ a) Bitte kommentiere das Sekundenblinken komplett aus. Das sowohl in der KÖLSCH
 
 +++++++++
 Aufgabe 3:
+a) Erstelle eine Kopie der ENGLISCH Variante im Ordner WORTUHR/ENGLISCH und nenne sie:
+"WortuhrEnglischEffect_2026_V5" (die .INO Datei analog benennen).
+b) Ergänze darin alle Änderungen aus den Aufgaben (1) und (2) ohne die Sprach-relevanten bzw. englisch-spezifischen Bezeichnungen zu verändern.
+c) Falls dir Verbesserungen in den Sourcen auffallen ... lass es mich wissen damit ich entscheiden kann was davon umgesetzt werden soll.
