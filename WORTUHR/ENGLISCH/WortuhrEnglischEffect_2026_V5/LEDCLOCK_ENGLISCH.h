@@ -8,7 +8,7 @@
 
 #include <FastLED.h>        // Used library FastLED (by Daniel Garcia / Version 3.10.10) - used for programming the LED stripes
 
-#define DATA_PIN            14 // (for ESP32 )
+#define DATA_PIN            21 // (for ESP32 - GPIO 21)
 #define NUMPIXELS           121
 #define MAX_POWER_MILLIAMPS 500
 #define LED_TYPE            WS2812B
