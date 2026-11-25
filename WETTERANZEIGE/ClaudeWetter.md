@@ -4,4 +4,9 @@ AUFGABE 1:
 a) Erstelle eine Kopie der Version 4 und nenne sie:
 "WetterVorhersagePlattDeutsch_2026_V5" (die .INO Datei analog benennen)
 b) Passe darin den Quellcode auf die neuesten Library Erfordernisse an (analog der neuesten Wortuhr Varianten).
-c) Falls dir (weitere) Verbesserungen in den Sourcen auffallen ... lass es mich wissen damit ich entscheiden kann was davon umgesetzt werden soll.
+c) Falls dir (weitere) Verbesserungen in den Sourcen auffallen ... lass es mich wissen damit ich entscheiden kann was davon umgesetzt werden soll. Bitte orientiere sich dabei auch an den Verbesserungen, die du für die plattdeutsche Wortuhr ergänzt hast.
+(ACHTUNG: einen Ein- und Ausblend-Effekt möchte ich für die Wetteranzeige NICHT!)
+
+++++++++
+Aufgabe 2:
+a) Der Abstand zwischen dem Feld "Kennwort" und der Checkbox "Kennwort wiesen" ist zu klein. Bitte passe die HTML / CSS Daten so an, dass die Anzeige dieser beiden Felder nicht mehr berührt.
