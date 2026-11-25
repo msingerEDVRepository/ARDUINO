@@ -105,6 +105,11 @@ const char* htmlPage = R"rawliteral(
         margin-top: 5px;
         margin-bottom: 15px;
       }
+      /* Abstand zwischen Kennwort-Feld und Checkbox "Kennwort wiesen" -
+         die Checkbox ist per transform: scale(1.7) vergrößert und ragt sonst in das Feld */
+      .showPasswordContainer {
+        margin-top: 18px;
+      }
 
       input[type='checkbox'] {
         transform: scale(1.7);
@@ -277,9 +282,10 @@ const char* htmlPage = R"rawliteral(
             maxlength="64"
             placeholder=" ... dien Kennwort ingaven ..."
           />
-          <br />
-          <input type="checkbox" id="showPassword" onclick="togglePassword()" />
-          <label for="showPassword"> Kennwort wiesen</label>
+          <div class="showPasswordContainer">
+            <input type="checkbox" id="showPassword" onclick="togglePassword()" />
+            <label for="showPassword"> Kennwort wiesen</label>
+          </div>
         </div>
         <h2>Mien Urtschaft (PLZ + Name):</h2>
         <div class="locationPLZ">
