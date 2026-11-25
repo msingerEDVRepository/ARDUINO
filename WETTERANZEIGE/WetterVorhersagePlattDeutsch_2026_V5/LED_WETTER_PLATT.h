@@ -15,7 +15,7 @@
 //             externes 5V-Netzteil -> z.B. 2000 (bei 3 A Netzteil) - ESP32 UND Streifen am selben Netzteil, GND verbinden!
 // Hinweis: FastLED rechnet ca. 1 mA pro LED Ruhestrom mit (169 LEDs = ~170 mA), auch wenn alle LEDs "aus" sind.
 #define MAX_POWER_VOLTS     5
-#define MAX_POWER_MILLIAMPS 500
+#define MAX_POWER_MILLIAMPS 1000
 #define LED_TYPE            WS2812B
 #define COLOR_ORDER         GRB
 #define BRIGHTNESS          150
