@@ -10,3 +10,7 @@ c) Falls dir (weitere) Verbesserungen in den Sourcen auffallen ... lass es mich 
 ++++++++
 Aufgabe 2:
 a) Der Abstand zwischen dem Feld "Kennwort" und der Checkbox "Kennwort wiesen" ist zu klein. Bitte passe die HTML / CSS Daten so an, dass die Anzeige dieser beiden Felder nicht mehr berührt.
+
+++++++++
+Hinweis:
+Ich habe die MAX-MILLIAMPS auf den Wert 1000 mA angepasst, da ich für den normalen Betrieb der Wetteranzeige (also nicht bei Anschluss am USB-Port meines PC) ein Netzteil mit einer Leistung von 2 Ampere max.
