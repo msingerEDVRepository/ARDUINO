@@ -28,6 +28,11 @@
 //   (> 29 Zeichen) haben vorher die Farb- und Nacht-Einstellungen überschrieben.
 //   Ein in V4 gespeichertes Passwort wird beim ersten Start automatisch übernommen.
 // - weitere Korrekturen: siehe Kommentare mit "FIX"
+// - Verbesserungen (2026-11-26, wie Hochdeutsch V5):
+//   (1) WLAN-Passwort im seriellen Monitor nur noch maskiert (******** + Länge)
+//   (2) WLAN-Historie in der Web-UI: deutsche Überschrift, zentriert, auch ohne gültige WLAN-Daten
+//   (3) Passwort-Eingabefeld verdeckt, mit Checkbox "Kennwort anzeigen"
+//   (4) Erfolgsmeldung nur bei Erfolg, sonst Fehlermeldung; Passwort nicht mehr in der Browser-Konsole
 // - Sekundenblinken des Logos (LED 60) komplett auskommentiert (Aufgabe 2)
 //
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -260,6 +265,14 @@ void loadSettings() {
 
 // FIX: Text sicher in einen JavaScript-String ("...") einbetten. Vorher hat ein
 // Anführungszeichen oder Backslash in SSID/Passwort die komplette Web-Seite zerstört.
+// (1) Passwort für die Ausgabe im seriellen Monitor maskieren: statt Klartext nur
+// Sternchen + Länge, z.B. "******** (20 Zeichen)" - so lässt sich weiterhin prüfen,
+// OB ein Passwort gespeichert ist, ohne es preiszugeben.
+String maskPassword(const String &pw) {
+  if (pw.length() == 0) return "(leer)";
+  return "******** (" + String(pw.length()) + " Zeichen)";
+}
+
 String jsEscape(const String &s) {
   String out;
   out.reserve(s.length() + 8);
@@ -346,7 +359,7 @@ String getDisconnectLog() {
   uint8_t idx = wifiPrefs.getUChar("idx", 0);
 
   String out =
-    "<table border='1' cellspacing='0' cellpadding='4'>"
+    "<table border='1' cellspacing='0' cellpadding='4' style='margin:0 auto'>"
     "<tr><th>#</th><th>Zeit&nbsp;[s]</th><th>Code</th><th>Grund</th></tr>";
 
   uint8_t nr = 1;
@@ -412,7 +425,7 @@ void handleRoot() {
     html.replace("%%EFFECTSJN%%", String(savedEFFECTS_JN));
     html.replace("%%WIFILOG%%", getDisconnectLog());
   } else {
-    html.replace("%%PASSWORD%%", "\"... bitte Passwort eingeben ...\"");
+    html.replace("%%PASSWORD%%", "\"\"");      // leer -> Platzhalter "... bitte Passwort eingeben ..." im Eingabefeld
     html.replace("%%RED%%", "100");
     html.replace("%%GREEN%%", "100");
     html.replace("%%BLUE%%", "100");
@@ -420,7 +433,7 @@ void handleRoot() {
     html.replace("%%NIGHTSTART%%", "0");
     html.replace("%%NIGHTEND%%", "6");
     html.replace("%%EFFECTSJN%%", "false");
-    html.replace("%%WIFILOG%%", "Disconnect-Log nicht vorhanden.");
+    html.replace("%%WIFILOG%%", getDisconnectLog());     // (2) Historie auch ohne gültige WLAN-Daten
   }
 
   server.send(200,"text/html", html);
@@ -480,7 +493,7 @@ void handleSave(){
   loadSettings();
   loadCredentials();
 
-  Serial.println("Gelesene Werte SSID: " + savedSSID + " PW: " + savedPASSWORD + " im HandleSave.");
+  Serial.println("Gelesene Werte SSID: " + savedSSID + " PW: " + maskPassword(savedPASSWORD) + " im HandleSave.");
 
   // ++++++++++++++++++++++++++++
 
@@ -491,7 +504,7 @@ void handleSave(){
   Serial.println("Ein-/Ausblend-Effekte (JN):" + String(savedEFFECTS_JN));
   Serial.println("NightMode(JN):" + String(savedNIGHT_JN) + " NightStart:" + String(savedNIGHT_START) + " NightEnd:" + String(savedNIGHT_END));
   Serial.println("++++++++++++++++++++++++++++++++++++++++");
-  Serial.println("Gespeichert SSID:" + receivedSSID + " PW:" + receivedPASSWORD);
+  Serial.println("Gespeichert SSID:" + receivedSSID + " PW:" + maskPassword(receivedPASSWORD));
   Serial.println("Starte Uhr received (JN):" + String(receivedClockStart));
   Serial.println("++++++++++++++++++++++++++++++++++++++++");
 
@@ -658,7 +671,7 @@ void setup() {
   server.on("/save", HTTP_POST, handleSave);
   server.begin();
 
-  Serial.println("Gelesene Werte SSID: " + savedSSID + " PW: " + savedPASSWORD + " im setup.");
+  Serial.println("Gelesene Werte SSID: " + savedSSID + " PW: " + maskPassword(savedPASSWORD) + " im setup.");
 
   // +++++++++++ Init LED-Strip ++++++++++++++++++++++++++
   FastLED.addLeds<LED_TYPE,DATA_PIN,COLOR_ORDER>(LEDstripArray, NUMPIXELS);
