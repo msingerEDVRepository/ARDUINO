@@ -10,7 +10,12 @@
 
 #define DATA_PIN            21 // (for ESP32 - GPIO 21)
 #define NUMPIXELS           121
-#define MAX_POWER_MILLIAMPS 500
+// Strombegrenzung für den gesamten LED-Streifen (wird im setup() an FastLED übergeben).
+// Richtwerte: ESP32 am USB-Port  -> ca. 300 (USB liefert nur 500 mA, der ESP32 braucht mit WLAN selbst ~150-250 mA)
+//             externes 5V-Netzteil -> z.B. 2000 (bei 3 A Netzteil) - ESP32 UND Streifen am selben Netzteil, GND verbinden!
+// Hinweis: FastLED rechnet ca. 1 mA pro LED Ruhestrom mit (121 LEDs = ~120 mA), auch wenn alle LEDs "aus" sind.
+#define MAX_POWER_VOLTS     5
+#define MAX_POWER_MILLIAMPS 1000
 #define LED_TYPE            WS2812B
 #define COLOR_ORDER         GRB
 #define BRIGHTNESS          150

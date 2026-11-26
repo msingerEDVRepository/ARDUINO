@@ -662,6 +662,7 @@ void setup() {
 
   // +++++++++++ Init LED-Strip ++++++++++++++++++++++++++
   FastLED.addLeds<LED_TYPE,DATA_PIN,COLOR_ORDER>(LEDstripArray, NUMPIXELS);
+  FastLED.setMaxPowerInVoltsAndMilliamps(MAX_POWER_VOLTS, MAX_POWER_MILLIAMPS);   // FastLED dimmt automatisch herunter, wenn zu viel Strom nötig wäre
   FastLED.setBrightness(BRIGHTNESS);
 
   // ++++++++++ INIT of WORD-Clock Array ++++++++
