@@ -32,6 +32,10 @@
 //   (6) Countdown zeigt alle 5 Minutenwörter (inkl. TWENTYFIVE)
 //   (7) Tippfehler "passwort" -> "password"
 //   (8) WLAN-Passwort im seriellen Monitor nur noch maskiert (******** + Länge)
+// Verbesserungen (2026-11-26, wie Hochdeutsch/Plattdeutsch/Kölsch):
+//   (9)  WLAN-Historie in der Web-UI zentriert und auch ohne gültige WLAN-Daten sichtbar
+//   (10) Passwort-Eingabefeld verdeckt, mit Checkbox "show password"
+//   (11) Erfolgsmeldung nur bei Erfolg, sonst Fehlermeldung; Passwort nicht mehr in der Browser-Konsole
 //
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -330,7 +334,7 @@ String getDisconnectLog() {
   uint8_t idx = wifiPrefs.getUChar("idx", 0);
 
   String out =
-    "<table border='1' cellspacing='0' cellpadding='4'>"
+    "<table border='1' cellspacing='0' cellpadding='4' style='margin:0 auto'>"
     "<tr><th>#</th><th>Time&nbsp;[s]</th><th>Code</th><th>Reason</th></tr>";
 
   uint8_t nr = 1;
@@ -407,7 +411,7 @@ void handleRoot() {
     html.replace("%%EFFECTSJN%%", String(savedEFFECTS_JN));
     html.replace("%%WIFILOG%%", getDisconnectLog());
   } else {
-    html.replace("%%PASSWORD%%", "\"... your password ...\"");
+    html.replace("%%PASSWORD%%", "\"\"");      // leer -> Platzhalter "... your password ..." im Eingabefeld
     html.replace("%%RED%%", "100");
     html.replace("%%GREEN%%", "100");
     html.replace("%%BLUE%%", "100");
@@ -415,7 +419,7 @@ void handleRoot() {
     html.replace("%%NIGHTSTART%%", "0");
     html.replace("%%NIGHTEND%%", "6");
     html.replace("%%EFFECTSJN%%", "false");
-    html.replace("%%WIFILOG%%", "No disconnect log available.");
+    html.replace("%%WIFILOG%%", getDisconnectLog());     // (9) Historie auch ohne gültige WLAN-Daten
   }
 
   server.send(200,"text/html", html);

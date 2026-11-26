@@ -84,6 +84,11 @@ const char* htmlPage = R"rawliteral(
         margin-top: 5px;
         margin-bottom: 15px;
       }
+      /* Abstand zwischen Passwort-Feld und Checkbox "show password" -
+         die Checkbox ist per transform: scale(1.7) vergrößert und ragt sonst in das Feld */
+      .showPasswordContainer {
+        margin-top: 18px;
+      }
 
       input[type='checkbox'] {
         transform: scale(1.7);
@@ -254,12 +259,16 @@ const char* htmlPage = R"rawliteral(
         </div>
         <div class="passkey">
           <input
-            type="text"
+            type="password"
             name="password"
             id="password"
             maxlength="64"
-            placeholder=" enter password"
+            placeholder=" ... your password ..."
           />
+          <div class="showPasswordContainer">
+            <input type="checkbox" id="showPassword" onclick="togglePassword()" />
+            <label for="showPassword"> show password</label>
+          </div>
         </div>
         <div class="nightModeContainer">
           <input type="checkbox" id="nightModeJN" name="nightModeJN" />
@@ -324,6 +333,12 @@ const char* htmlPage = R"rawliteral(
     var savedEFFECTS_JN = %%EFFECTSJN%%;
 
     document.getElementById('password').value = savedPASSWORD;
+
+    // (10) Passwort ein-/ausblenden
+    function togglePassword() {
+      var pw = document.getElementById('password');
+      pw.type = document.getElementById('showPassword').checked ? 'text' : 'password';
+    }
     document.getElementById('rgbred').value = savedRGB_RED;
     document.getElementById('rgbgreen').value = savedRGB_GREEN;
     document.getElementById('rgbblue').value = savedRGB_BLUE;
@@ -395,12 +410,13 @@ const char* htmlPage = R"rawliteral(
 
       postJSON.onreadystatechange = function() {
         if(postJSON.readyState === XMLHttpRequest.DONE) {
-          document.getElementById('saved').innerText = "Your configuration is stored.";
+          document.getElementById('saved').innerText = (postJSON.status === 200)
+            ? "Your configuration is stored."
+            : "Error while saving (" + postJSON.status + ")";
         }
       };
 
       postJSON.send(JSON.stringify(saveObjectJSON));
-      console.log(JSON.stringify(saveObjectJSON));
            
     }
 
@@ -426,12 +442,13 @@ const char* htmlPage = R"rawliteral(
 
       postJSON.onreadystatechange = function() {
         if(postJSON.readyState === XMLHttpRequest.DONE) {
-          document.getElementById('startet').innerText = "The clock is starting now ...";
+          document.getElementById('startet').innerText = (postJSON.status === 200)
+            ? "The clock is starting now ..."
+            : "Error while starting (" + postJSON.status + ")";
         }
       };
 
       postJSON.send(JSON.stringify(startObjectJSON));
-      console.log(JSON.stringify(startObjectJSON));
 
     } 
 
