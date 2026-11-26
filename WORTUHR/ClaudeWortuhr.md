@@ -29,3 +29,7 @@ c) Übertrage die Effekte aus der Plattdeutsch Variante in die Hochdeutsch Varia
 d) Bitte kommentiere das Sekundenblinken auch in dieser Variante komplett aus.
 e)
 d) Falls dir Verbesserungen in den Sourcen auffallen ... lass es mich wissen damit ich entscheiden kann was davon umgesetzt werden soll.
+
++++++++++++
+Aufgabe 5:
+a) Du hast bei der Wetteranzeige eine Verwendung der MAX-MILLIAMPS eingaut. Das bitte auch auf die drei Wortuhren - Varianten ergänzen.
