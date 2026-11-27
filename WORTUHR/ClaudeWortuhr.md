@@ -27,9 +27,50 @@ a)Erstelle eine Kopie der Hochdeutsch Variante , die du hier findest WORTUHR/HOC
 b) Passe darin den Quellcode auf die neuesten Library Erfordernisse an (analog der Plattdeutsch Variante). Checke dabei auch, ob es Verbesserungsbedarfe gibt.
 c) Übertrage die Effekte aus der Plattdeutsch Variante in die Hochdeutsch Variante.
 d) Bitte kommentiere das Sekundenblinken auch in dieser Variante komplett aus.
-e)
-d) Falls dir Verbesserungen in den Sourcen auffallen ... lass es mich wissen damit ich entscheiden kann was davon umgesetzt werden soll.
+e) Falls dir Verbesserungen in den Sourcen auffallen ... lass es mich wissen damit ich entscheiden kann was davon umgesetzt werden soll.
+f) Baue den Wert MAX-Milliamps mit dem Wert 1000 mA ein und verwende ihn dementsprechend, um die Stabilität des Systems auch dann zu gewährleisten, wenn alle LED eingeschaltet werden.
+g) Der Wert der BRIGHTNESS ist auf 150 zu setzen (sofern nicht bereits passiert!)
+h) Der GPIO-Pin für die LED Ansteuerung soll den Wert 21 erhalten (sofern nicht bereits erfolgt).
 
 +++++++++++
 Aufgabe 5:
-a) Du hast bei der Wetteranzeige eine Verwendung der MAX-MILLIAMPS eingaut. Das bitte auch auf die drei Wortuhren - Varianten ergänzen.
+a) Du hast bei der Wetteranzeige eine Verwendung der MAX-MILLIAMPS eingebaut. Das bitte auch auf die drei Wortuhren - Varianten ergänzen.
+
++++++++++
+Aufgabe 6:
+a)Erstelle eine Kopie der Schwaebisch Variante , die du hier findest WORTUHR/SCHWAEBISCH/WortuhrSchwaebisch_2026_V4... und nenne sie:
+"WortuhrSchwaebischEffect_2026_V5" (die .INO Datei analog benennen)
+b) Passe darin den Quellcode auf die neuesten Library Erfordernisse an (analog der Plattdeutsch Variante).
+c) Übertrage die Effekte aus der Hochdeutsch Variante in die Schwaebisch Variante.
+d) Bitte kommentiere das Sekundenblinken auch in dieser Variante komplett aus.
+e) Falls dir Verbesserungen in den Sourcen auffallen ... lass es mich wissen damit ich entscheiden kann was davon umgesetzt werden soll.
+f) Baue den Wert MAX-Milliamps mit dem Wert 1000 mA ein und verwende ihn dementsprechend, um die Stabilität des Systems auch dann zu gewährleisten, wenn alle LED eingeschaltet werden.
+g) Der Wert der BRIGHTNESS ist auf 150 zu setzen (sofern nicht bereits passiert!)
+h) Der GPIO-Pin für die LED Ansteuerung soll den Wert 21 erhalten (sofern nicht bereits erfolgt).
+i) Lasse alle Sprach- bzw. Dialekt-Spezifika unverändert bzw. ergänze sie dort wo erforderlisch auf "Schwäbisch"..
+
++++++++++
+Aufgabe 7:
+a)Erstelle eine Kopie der Bayerisch Variante , die du hier findest WORTUHR/BAYERISCH/WortuhrBayerisch_2026_V4 .. und nenne sie:
+"WortuhrBayerischEffect_2026_V5" (die .INO Datei analog benennen)
+b) Passe darin den Quellcode auf die neuesten Library Erfordernisse an (analog der Plattdeutsch Variante).
+c) Übertrage die Effekte aus der Hochdeutsch Variante in die Bayerisch Variante.
+d) Bitte kommentiere das Sekundenblinken auch in dieser Variante komplett aus.
+e) Falls dir Verbesserungen in den Sourcen auffallen ... lass es mich wissen damit ich entscheiden kann was davon umgesetzt werden soll.
+f) Baue den Wert MAX-Milliamps mit dem Wert 1000 mA ein und verwende ihn dementsprechend, um die Stabilität des Systems auch dann zu gewährleisten, wenn alle LED eingeschaltet werden.
+g) Der Wert der BRIGHTNESS ist auf 150 zu setzen (sofern nicht bereits passiert!)
+h) Der GPIO-Pin für die LED Ansteuerung soll den Wert 21 erhalten (sofern nicht bereits erfolgt).
+i) Lasse alle Sprach- bzw. Bayerisch Dialekt-Spezifika unverändert bzw. ergänze sie dort wo erforderlisch auf "Bairisch".
+
++++++++++
+Aufgabe 8:
+a)Erstelle eine Kopie der Rheinisch Variante , die du hier findest WORTUHR/RHEINISCH/WortuhrRheinisch_2026_V4 ... und nenne sie:
+"WortuhrRheinischEffect_2026_V5" (die .INO Datei analog benennen)
+b) Passe darin den Quellcode auf die neuesten Library Erfordernisse an (analog der Plattdeutsch Variante).
+c) Übertrage die Effekte aus der Hochdeutsch Variante in die Rheinisch Variante.
+d) Bitte kommentiere das Sekundenblinken auch in dieser Variante komplett aus.
+e) Falls dir Verbesserungen in den Sourcen auffallen ... lass es mich wissen damit ich entscheiden kann was davon umgesetzt werden soll.
+f) Baue den Wert MAX-Milliamps mit dem Wert 1000 mA ein und verwende ihn dementsprechend, um die Stabilität des Systems auch dann zu gewährleisten, wenn alle LED eingeschaltet werden.
+g) Der Wert der BRIGHTNESS ist auf 150 zu setzen (sofern nicht bereits passiert!)
+h) Der GPIO-Pin für die LED Ansteuerung soll den Wert 21 erhalten (sofern nicht bereits erfolgt).
+i) Lasse alle Sprach- bzw. Bayerisch Dialekt-Spezifika unverändert bzw. ergänze sie dort wo erforderlisch auf "Hochdeutsch".
